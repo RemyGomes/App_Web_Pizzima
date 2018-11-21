@@ -1,6 +1,9 @@
 version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
+    branches: 
+      - master
+      - feature/*
     docker: # run the steps with Docker
       - image: circleci/node:4.8.2 # this is where all `steps` will run
     steps: # a collection of executable commands
@@ -8,6 +11,7 @@ jobs: # a collection of steps
       - run:
           name: update-npm
           command: 'sudo npm install -g npm@latest'
+          command: npm run start
       - restore_cache: # special step to restore the dependency cache
           key: dependency-cache-{{ checksum "package.json" }}
       - save_cache: # special step to save the dependency cache
