@@ -1,0 +1,181 @@
+<%- include('_layout/header'); -%>
+<%- include('_layout/login'); -%>
+
+  <nav class="deep-orange darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="/">
+        <img id="logo" src="/static/image/bde_logo.png" alt="Une image de pizza">
+        <a id="logo-container" href="/" class="brand-logo">PiZZima</a>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li>
+          <a href="#">Ma commande</a>
+        </li>
+        <li>
+          <!-- <li> -->
+            <!-- <img class="responsive-img" src="ressources/Pizza_commande.png" alt="Une image de boite pizza"> -->
+              <!-- Dropdown Trigger -->
+          <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Se connecter</a>
+
+            <!-- Dropdown Structure -->
+          <ul id='dropdown1' class='dropdown-content'>
+              <li><a href="#!">Mon compte</a></li>
+              <li><a href="#!">two</a></li>
+              <li class="divider" tabindex="-1"></li>
+              <li><a href="#!">three</a></li>
+              <li>
+                <a href="#!"><i class="material-icons">view_module</i>four</a>
+              </li>
+              <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+            </ul>
+            <!-- <a href="#">Ma commande</a> -->
+          <!-- </li> -->
+        <li>
+      </ul>
+
+
+      <!-- Partie nav-mobile -->
+      <ul id="nav-mobile" class="sidenav">
+        <li>
+          <a href="#">Ma commande</a>
+        </li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
+    </div>
+  </nav>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center orange-text">PiZZima</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Liste de pizza</h5>
+      </div>
+      <!-- test -->
+      <div id="affichage_pizzas" class="row">
+        <% for(var i = 0; i < pizzas.length; i++) { %>
+          <div class="col s12 m3">
+            <div class="card">
+              <div class="card-image">
+                <img src=<%=pizzas[i].url %>>
+                <span class="card-title"><%=pizzas[i].nom_pizza %></span>
+                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+              </div>
+              <div class="card-content">
+                <% for(var j = 0; j < pizzas[i].compo_pizza.length; j++) { %>
+                  <p><%=pizzas[i].compo_pizza[j] %></p>
+                  <% } %>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- 
+      <div class="row   center">
+        <li>Pizza 4 Fromages<img id="logo-list-commande" src="/static/image/Pizza_4_fromages.jpg" alt="Une pizza 4 fromages"></li>
+        <li>Pizza Savoyarde<img id="logo-list-commande" src="/static/image/Pizza_savoyarde.jpg" alt="Une pizza savoyarde"></li>
+        <li>Pizza Steak & Cheese<img id="logo-list-commande" src="/static/image/Pizza_steak_cheese.jpg" alt="Une pizza Steak & Cheese"></li>
+      </div>
+      --> 
+      <!-- fin test -->
+        <!-- Modal Trigger -->
+      <a id="modal_add_pizza" class="waves-effect btn modal-trigger" href="#modal1">Ajouter votre pizza</a>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Ajout d'une pizza</h4>
+          <form action="#">
+            <div class="input-field col s12">
+                <input placeholder="Nom de la pizza" id="pizza_name" type="text" class="validate">
+                <label for="pizza_name">Pizza Name</label>
+            </div>
+            <div class="input-field col s12">
+              <select id="sauce">
+                  <option value="" selection disabled>Votre sauce</option>
+                  <option value="R">R</option>
+                  <option value="Sauce tomate">Sauce tomate</option>
+                  <option value="Crème fraiche">Crème fraiche</option>
+              </select>
+              <label>Sauce</label>
+            </div>
+            
+            <div class="input-field col s12">
+              <select id="viandes" multiple>
+                <option value="Steak">Steak</option>
+                <option value="Steak 2">Steak 2</option>
+                <option value="Poulet">Poulet</option>
+              </select>
+              <label>Viandes</label>
+            </div>
+
+            <div class="input-field col s12">
+              <select id="fromages" multiple>
+                <option value="Saint-Nectaire">Saint-Nectaire</option>
+                <option value="Mozzarella">Mozzarella</option>
+                <option value="Emmental">Emmental</option>
+              </select>
+              <label>Fromages</label>
+            </div>
+
+            <div class="input-field col s12">
+              <select id="accompagnements" multiple>
+                <option value="Oeuf">Oeuf</option>
+                <option value="Oeuf">Oeuf</option>
+                <option value="Oeuf">Oeuf</option>
+              </select>
+              <label>Accompagnements</label>
+            </div>
+          <div class="col s12">
+            <label>
+              <input type="checkbox" id="sauce_piquante"/>
+              <span>Sauce piquante</span>
+            </label>
+          </div>
+          <div class="file-field col s12">
+              <div class="btn">
+                <span>Parcourir</span>
+                <input type="file" accept="image/png, image/jpg, image/jpeg, image/bmp">
+              </div>
+              <div class="file-path-wrapper">
+                <input id="image_pizza" class="file-path validate" type="text" placeholder="Ajouter une image">
+              </div>
+            </div>
+        </form>
+        <div class="modal-footer">
+          <a id="add_pizza_btn_modal" href="#!" class="modal-close btn">Ajouter la pizza</a>
+          <a id="cancel_pizza_btn_modal" href="#!" class="modal-close btn-flat">Annuler</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--
+  <div class="container">
+    <div class="section">
+    -->
+      <!--   Icon Section   -->
+      <!--
+      <div class="row">
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
+            <h5 class="center">Un large choix de pizzas</h5>
+
+            <p class="light">PiZZima vous propose une multitude de pizzas à commander.</p>
+            <img class="center" src="/ressources/Pizza_body.png">
+          </div>
+        </div>
+    </div>
+    <br><br>
+  </div
+-->
+
+
+
+
+</html>
+
+
+<%- include('_layout/footer'); -%>
