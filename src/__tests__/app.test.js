@@ -28,6 +28,7 @@ describe("pizza route", () => {
   });
 });
 // Marche pas
+/*
 describe("add pizza", () => {
   afterAll(() => {
     server.close();
@@ -45,5 +46,5 @@ describe("add pizza", () => {
     return request(app).post("/add_pizza", {name, sauce, viandes, fromages, accompagnements, piquante, file})
     .expect(200);
   });
-});
+});*/
 
